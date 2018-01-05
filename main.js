@@ -18,10 +18,10 @@ yesterday = yesterday.toISOString();
 let getCompletedTasks = projectsIds => {
     for(let id in INTprojectsIds) {
         let getOptions = {
-            url: 'https://app.asana.com/api/1.0/projects/' + INTprojectsIds[id] + '/tasks?opt_fields=completed,custom_fields&completed_since=' + encodeURIComponent(yesterday),
+            url: 'https://app.asana.com/api/1.0/projects/' + INTprojectsIds[id] + '/tasks?opt_fields=name,completed,custom_fields&completed_since=' + encodeURIComponent(yesterday),
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer TOKEN'//insert personal access token
+                'Authorization': 'Bearer 0/34784122c7fc335cb34435c5682bddee'// Reminder Bot personal access token
             }
         };
         // Fetch yesterday's tasks
@@ -49,11 +49,11 @@ let postTimeSpentReminder = task => {
                 url: 'https://app.asana.com/api/1.0/tasks/' + task.id + '/stories',
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer TOKEN'//insert personal access token
+                    'Authorization': 'Bearer 0/34784122c7fc335cb34435c5682bddee'// Reminder Bot personal access token
                 },
                 json: {
                     data: {
-                        'text': '(BOT) Time spent em branco. Favor inserir tempo gasto na task.'
+                        'text': 'Time spent em branco. Favor inserir tempo gasto na task.'
                     }
                 }
             };
@@ -64,10 +64,11 @@ let postTimeSpentReminder = task => {
                 } else {
                     console.log('Reminder succesfully posted');
                     console.log('timestamp :', body.data.created_at);
+                    console.log('task name:', task.name);
+                    console.log('task id: ', task.id);
                     console.log('text: ', body.data.text);
                 }
             });
-            console.log(task.id);
         }
     }
 };
