@@ -27,7 +27,7 @@ const initializeReminder = projectsIdsArray => {
             url: `https://app.asana.com/api/1.0/projects/${projectId}/tasks?opt_fields=name,projects,completed,custom_fields&completed_since=${encodeURIComponent(pastDate)}`,
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer 0/34784122c7fc335cb34435c5682bddee'// Reminder Bot personal access token
+                'Authorization': ''// Reminder Bot personal access token
             }
         };
         request(getOptions, function (error, response, body) {
@@ -71,7 +71,7 @@ const sendTimeSpentReminder = task => {
         url: `https://app.asana.com/api/1.0/tasks/${task.id}/stories`,
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer 0/34784122c7fc335cb34435c5682bddee'// Reminder Bot personal access token
+            'Authorization': ''// Reminder Bot personal access token
         },
         json: {
             data: {
